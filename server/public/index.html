@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <script src="./scripts/axios.js"></script>
-  <script src="./scripts/client.js"></script>
+  <script defer src="./scripts/client.js"></script>
+
   <title>SQL TO-DO List</title>
 </head>
 
@@ -14,11 +15,13 @@
   <header>
     <h1>SQL TO-DO List</h1>
   </header>
-  <input type="text" id="inputTask" data-testid="toDoTextInput" placeholder="Add Task">
-  <button onclick="handleAddTask()" id="addTask">Add Task</button>
-  <tbody id="">
+  <form id="form">
+    <input data-testid="toDoTextInput" type="text" id="inputTask" data-testid="toDoTextInput" placeholder="Add Task" />
+    <button type="submit" data-testid="submitButton">Add Task</button>
+  </form>
+  <div id="table">
 
-  </tbody>
+  </div>
 </body>
 
 </html>
