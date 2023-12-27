@@ -16,6 +16,7 @@ const createTask = () => {
             isComplete: false
         }
     }).then(() => getTasks())
+        .then(() => inputTask.value = "")
 }
 
 const getTasks = () => {
@@ -31,7 +32,7 @@ const printTask = (tasks) => {
     for (let task of tasks) {
         console.log(task)
         tableContent.innerHTML += `
-        <div class="task" data-testid="toDoItem">
+        <div class="${task.isComplete ? "completed" : ""}"  data-testid="toDoItem">
             <p>${task.text}</p>
             <p>Status: ${task.isComplete ? "Completed" : "Incomplete"}</p>
             <button data-testid="completeButton" onclick="updateTask(${task.id})">Complete</button>
