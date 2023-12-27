@@ -15,7 +15,7 @@ const createTask = () => {
             text: inputTask.value,
             isComplete: false
         }
-    })
+    }).then(() => getTasks())
 }
 
 const getTasks = () => {
@@ -34,10 +34,8 @@ const printTask = (tasks) => {
         <div class="task" data-testid="toDoItem">
             <p>${task.text}</p>
             <p>Status: ${task.isComplete ? "Completed" : "Incomplete"}</p>
-            <div class="">
-                <button >Complete</button>
-                <button data-testid="deleteButton" onclick="deleteBtn(${task.id})">Delete</button>
-            </div>
+            <button data-testid="completeButton" onclick="updateTask(${task.id})">Complete</button>
+            <button data-testid="deleteButton" onclick="deleteBtn(${task.id})">Delete</button>
         </div>`
     }
 }
@@ -49,5 +47,15 @@ const deleteBtn = (id) => {
         method: 'DELETE',
         url: `/todos/${id}`
     }).then((res) => getTasks())
-    // .then(res => printTask(res))
+}
+
+const updateTask = (id) => {
+    console.log("update", id)
+    axios({
+        method: 'PUT',
+        url: `/todos/${id}`,
+        data: {
+            isComplete: true
+        }
+    }).then((res) => getTasks())
 }

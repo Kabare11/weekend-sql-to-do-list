@@ -56,15 +56,15 @@ todosRouter.delete("/:id", (req, res) => {
 
 todosRouter.put('/:id', (req, res) => {
     const id = req.params.id;
-    let { text, isComplete } = req.body;
+    let { isComplete } = req.body;
 
     let updateQuery = `
     UPDATE "todos"
-    SET text= $1, "isComplete" = $2
-    WHERE id = $3
+    SET "isComplete" = $1
+    WHERE id = $2
     `
 
-    const queryParams = [text, isComplete, id];
+    const queryParams = [isComplete, id];
 
     pool
         .query(updateQuery, queryParams)
