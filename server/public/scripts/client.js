@@ -1,3 +1,4 @@
+
 const inputTask = document.getElementById("inputTask")
 const form = document.getElementById("form")
 const tableContent = document.getElementById("table")

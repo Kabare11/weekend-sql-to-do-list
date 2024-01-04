@@ -1,3 +1,5 @@
+
+
 const todosRouter = require("express").Router();
 const pool = require("../modules/pool");
 
@@ -19,7 +21,11 @@ todosRouter.get("/", (req, res) => {
 });
 
 todosRouter.post("/", (req, res) => {
-    let { text, isComplete } = req.body;
+    // Todos Destructing 
+    // let { text, isComplete } = req.body;
+
+    const text = req.body.text
+    const isComplete = req.body.isComplete
 
     const queryText = `
     INSERT INTO "todos" 
@@ -27,8 +33,8 @@ todosRouter.post("/", (req, res) => {
     VALUES ($1, $2)
     `;
     const queryParams = [text, isComplete];
-    pool
-        .query(queryText, queryParams)
+
+    pool.query(queryText, queryParams)
         .then((result) => res.sendStatus(201))
         .catch((error) => {
             console.log("error getting todos", error);
