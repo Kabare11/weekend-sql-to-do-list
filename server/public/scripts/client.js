@@ -1,14 +1,15 @@
 
-const inputTask = document.getElementById("inputTask")
-const form = document.getElementById("form")
-const tableContent = document.getElementById("table")
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault()
-    createTask()
-})
+function onReady() {
+    getTasks()
+    const form = document.getElementById("form")
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
+        createTask()
+    })
+}
 
 const createTask = () => {
+    const inputTask = document.getElementById("inputTask")
     axios({
         method: 'POST',
         url: '/todos',
@@ -29,6 +30,7 @@ const getTasks = () => {
 }
 
 const printTask = (tasks) => {
+    const tableContent = document.getElementById("table")
     tableContent.innerHTML = ""
     for (let task of tasks) {
         console.log(task)
@@ -42,7 +44,7 @@ const printTask = (tasks) => {
     }
 }
 
-getTasks()
+
 
 const deleteBtn = (id) => {
     axios({
@@ -61,3 +63,5 @@ const updateTask = (id) => {
         }
     }).then((res) => getTasks())
 }
+
+onReady(); 
